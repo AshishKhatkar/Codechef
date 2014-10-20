@@ -1,0 +1,60 @@
+{
+	ashish1610
+}
+program RRSTONE;
+const
+	inf=-2000000001;
+var
+	i,n:longint;
+	k,maxx,maxx1:int64;
+	ar:array[1..100005] of int64;
+	ans_a:array[1..100005] of int64;
+begin
+	read(n);
+	read(k);
+	maxx:=inf;
+	maxx1:=inf;
+	for i:=1 to n do
+	begin
+		read(ar[i]);
+		if(maxx<ar[i]) then
+		begin
+			maxx:=ar[i];
+		end;
+	end;
+	if(k=0) then
+	begin
+		for i:=1 to n do
+		begin
+			write(ar[i]);
+			write(' ');
+		end;
+		writeln();
+	end
+	else if((k mod 2)=1) then
+	begin
+		for i:=1 to n do
+		begin
+			write(maxx-ar[i]);
+			write(' ');
+		end;
+		writeln();
+	end
+	else
+	begin
+		for i:=1 to n do
+		begin
+			ans_a[i]:=maxx-ar[i];
+			if(maxx1<ans_a[i]) then
+			begin
+				maxx1:=ans_a[i];
+			end;
+		end;
+		for i:=1 to n do
+		begin
+			write(maxx1-ans_a[i]);
+			write(' ');
+		end;
+		writeln();
+	end;
+end.
