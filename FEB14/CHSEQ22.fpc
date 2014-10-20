@@ -1,0 +1,72 @@
+{
+	ashish1610
+}
+program chefandfavouritesequence;
+const
+	z=1000000007;
+var
+	n,m,i,j,x,y:longint;
+	ans,final_ans,temp:int64;
+	ar:array[1..100005] of int64;
+	ar1:array[1..100005] of int64;
+begin
+	randomize;
+	read(n);
+	read(m);
+	for i:=1 to n+1 do
+	begin
+		ar[i]:=i;
+		ar1[i]:=0;
+	end;
+	for i:=1 to m do
+	begin
+		read(x);
+		read(y);
+		y:=y+1;
+		while (not(x=ar[x])) do
+		begin
+			x:=ar[ar[x]];
+		end;
+		while (not(y=ar[y])) do
+		begin
+			y:=ar[ar[y]];
+		end;
+		if (not(x=y)) then
+		begin
+			if (ar1[x]>ar1[y]) then
+			begin
+				ar[y]:=x;
+				ar1[x]:=ar1[x]+ar1[y]+1;
+				ar1[y]:=0;
+			end
+			else
+			begin
+				ar[x]:=y;
+				ar1[y]:=ar1[y]+ar1[x]+1;
+				ar1[x]:=0;
+			end;
+		end;
+	end;
+	ans:=0;
+	for i:=1 to n+1 do
+	begin
+		if ar1[i]>0 then
+		begin
+			ans:=ans+ar1[i];
+		end;
+	end;
+	final_ans:=1;
+	temp:=2;
+	while(ans>0) do
+	begin
+		if((ans mod 2)=1) then
+		begin
+			final_ans:=final_ans*temp;
+		end;
+		final_ans:=(final_ans mod z);
+		temp:=temp*temp;
+		temp:=(temp mod z);
+		ans:=(ans div 2);
+	end;
+	writeln(final_ans);
+end.
