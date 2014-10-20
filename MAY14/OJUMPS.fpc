@@ -1,0 +1,17 @@
+{
+	ashish1610
+}
+program OJUMPS;
+var
+	a:int64;
+begin
+	read(a);
+	if(((a mod 6)=0) or ((a mod 6)=1) or ((a mod 6)=3)) then
+	begin
+		writeln('yes');
+	end
+	else 
+	begin
+		writeln('no');
+	end;
+end.
