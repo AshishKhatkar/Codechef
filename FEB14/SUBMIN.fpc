@@ -1,0 +1,46 @@
+{
+	ashish1610
+}
+program littleelephantandsubarrays;
+var
+	n,i,q,j,m:integer;
+	ans,k:int64;
+	ar:array[0..50] of int64;
+	min_ele_range:array[0..50, 0..50] of int64;
+begin
+	read(n);
+	for i:=0 to n-1 do
+	begin
+		read(ar[i]);
+		min_ele_range[i,i]:=ar[i];
+	end;
+	for i:=0 to n-2 do
+	begin
+		for j:=i+1 to n-1 do
+		begin
+			if(min_ele_range[i,j-1]<ar[j]) then
+			begin
+				min_ele_range[i,j]:=min_ele_range[i,j-1];
+			end
+			else
+			begin
+				min_ele_range[i,j]:=ar[j];
+			end;
+		end;
+	end;
+	read(q);
+	for i:=1 to q do
+	begin
+		read(k);
+		ans:=0;
+		for j:=0 to n-1 do
+		begin
+			for m:=j to n-1 do
+			begin
+				if (min_ele_range[j,m]=k) then
+					ans:=ans+1;
+			end;
+		end;
+		writeln(ans);
+	end;
+end.
